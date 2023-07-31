@@ -1,0 +1,63 @@
+def adauga_activitate(ziua, activitate, termen):
+    if ziua in evidenta_activitati:
+        evidenta_activitati[ziua].append((activitate, termen))
+    else:
+        evidenta_activitati[ziua] = [(activitate, termen)]
+    print("Activitatea a fost adăugată cu succes!")
+
+def vizualizeaza_activitati(ziua):
+    if ziua in evidenta_activitati:
+        print(f"Activitățile din data de {ziua}:")
+        for i, (activitate, termen) in enumerate(evidenta_activitati[ziua], start=1):
+            print(f"{i}. {activitate} - Termen: {termen}")
+    else:
+        print(f"Nu există activități înregistrate pentru data de {ziua}.")
+
+def sterge_activitate(ziua, index_activitate):
+    if ziua in evidenta_activitati:
+        if 1 <= index_activitate <= len(evidenta_activitati[ziua]):
+            evidenta_activitati[ziua].pop(index_activitate - 1)
+            print("Activitatea a fost ștearsă cu succes!")
+        else:
+            print("Indexul activității este invalid.")
+    else:
+        print(f"Nu există activități înregistrate pentru data de {ziua}.")
+
+
+# Dicționarul pentru a ține evidența activităților și a termenelor
+evidenta_activitati = {}
+
+# Funcția principală a aplicației
+def main():
+    while True:
+        print("\nAlegeti o optiune:")
+        print("1. Adauga activitate")
+        print("2. Vizualizeaza activitati")
+        print("3. Sterge activitate")
+        print("4. Iesire")
+
+        optiune = input("Introduceti numarul optiunii: ")
+
+        if optiune == "1":
+            ziua = input("Introduceti data (format: YYYY-MM-DD): ")
+            activitate = input("Introduceti denumirea activitatii: ")
+            termen = input("Introduceti termenul pana la care trebuie realizata activitatea: ")
+            adauga_activitate(ziua, activitate, termen)
+
+        elif optiune == "2":
+            ziua = input("Introduceti data (format: YYYY-MM-DD): ")
+            vizualizeaza_activitati(ziua)
+
+        elif optiune == "3":
+            ziua = input("Introduceti data (format: YYYY-MM-DD): ")
+            index_activitate = int(input("Introduceti indexul activitatii pe care doriti sa o stergeti: "))
+            sterge_activitate(ziua, index_activitate)
+
+        elif optiune == "4":
+            break
+
+        else:
+            print("Optiune invalida! Va rugam reintroduceti optiunea.")
+
+if __name__ == "__main__":
+    main()

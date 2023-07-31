@@ -1,0 +1,19 @@
+def suma_si_produs(numere):
+    suma = numere[0] + numere[1]
+    produs = numere[2] * numere[3]
+    return suma, produs
+
+if __name__ == "__main__":
+    try:
+        numar1 = float(input("Introdu primul număr: "))
+        numar2 = float(input("Introdu al doilea număr: "))
+        numar3 = float(input("Introdu al treilea număr: "))
+        numar4 = float(input("Introdu al patrulea număr: "))
+
+        numere = [numar1, numar2, numar3, numar4]
+        rezultat_suma, rezultat_produs = suma_si_produs(numere)
+
+        print(f"Suma primelor două numere este: {rezultat_suma}")
+        print(f"Produsul ultimelor două numere este: {rezultat_produs}")
+    except ValueError:
+        print("Input invalid. Asigură-te că ai introdus patru numere valide.")
